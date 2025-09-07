@@ -31,8 +31,8 @@ export const HomePage = () => {
                 />
             </View>
             <View style={styles.home_expences_header}>
-                <Text style={{fontSize: 16, fontWeight: "600"}}> Today's Expenses </Text>
-                <Text style={{fontSize: 12, color: "#616161"}}> 4 transactions </Text>
+                <Text style={{fontSize: 16, fontWeight: "600"}}> Bugün Harcadıkların </Text>
+                <Text style={{fontSize: 12, color: "#616161"}}> 4 harcama </Text>
             </View>
             <View style={styles.home_expenses_view} >
                 <HomeExpensesBox

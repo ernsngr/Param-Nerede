@@ -129,5 +129,49 @@ export const styles = StyleSheet.create({
         padding: 10,
         marginTop: 5,
         marginBottom: 5
+    },
+    stats_container:{
+        flex: 1,
+        alignItems: "center"
+    },
+    stats_header:{
+        width: "100%",
+        height: "15%",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        marginTop: 40,
+        marginLeft: 20
+    },
+    stats_top_box_container:{
+        width: "100%",
+        height: "auto",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    stats_top_box:{
+        width: "70%",
+        height: "auto",
+        backgroundColor: "red",
+        padding: 25,
+        borderRadius: 18
+    },
+    stats_top_box_lines:{
+        width: "100%",
+        height: "auto",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    spending_by_category:{
+        width: "90%",
+        height: 250,
+        backgroundColor: "blue",
+        padding: 20,
+        borderRadius: 18,
+        marginTop: 35,
+        marginBottom: 35,
+    },
+    info_box_header:{
+        width: "100%",
+        height: "auto"
     }
 })

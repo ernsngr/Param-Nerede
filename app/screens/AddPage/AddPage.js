@@ -27,7 +27,9 @@ export const AddPage = () => {
     return(
         <View>
            <View style={{width: "100%", height: "100%", alignItems: "center", justifyContent: "center"}}>
-            
+            <Text style={{position: "absolute", top: 65, left: 25, fontSize: 32, fontWeight: "500", letterSpacing: 1, marginBottom: 20}}>
+                Harcama Ekle
+            </Text>
             <View style={styles.add_page_box}>
                 <View style={{width: 45, height: 45, backgroundColor: "purple", alignItems: "center", justifyContent: "center", borderRadius: 50}}  >
                     <MaterialIcons name="attach-money" size={24} color="white" />

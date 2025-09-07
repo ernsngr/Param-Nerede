@@ -31,11 +31,13 @@ export default function App() {
         />
         <Tab.Screen name="AddPage" component={AddPage} options={{
           tabBarIcon: () => <AntDesign name="plussquare" size={24} color="#0D5EA6" />,
-          title: "Add"
+          title: "Add",
+          headerShown: false
         }}/>
         <Tab.Screen name="StatsPage" component={StatsPage} options={{
           tabBarIcon: () => <Ionicons name="stats-chart" size={24} color="#0D5EA6" />,
-          title: "Stats"
+          title: "Stats",
+          headerShown: false
         }}/>
       </Tab.Navigator>
     </NavigationContainer>
