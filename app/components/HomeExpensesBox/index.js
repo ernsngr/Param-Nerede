@@ -7,6 +7,7 @@ import { styles } from '../../styles';
 
 export const HomeExpensesBox = ({icon, title, price, category, time, backgroundColor}) => {
     return(
+        
         <View style={styles.home_expenses_box_container}>
             <View style={[styles.home_expenses_box_icon,{backgroundColor: backgroundColor}]}>{icon}</View>
             <View style={styles.home_expenses_box_content}>

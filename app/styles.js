@@ -37,11 +37,12 @@ export const styles = StyleSheet.create({
     home_top_box_text:{
         fontSize: 14,
         fontWeight: "600",
-        color: "#252525"
+        color: "#f5f5f5"
     },
     home_top_box_total:{
         fontSize: 22,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        color: "#f5f5f5"
     },
     home_expenses_view:{
         width: "100%",
@@ -49,23 +50,15 @@ export const styles = StyleSheet.create({
         alignItems: "center",
     },
     home_expenses_box_container:{
-        width:"94%",
-        height: "12%",
+        width:"100%",
+        height: 60,
+        backgroundColor: "#fff",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-evenly",
         borderRadius: 18,
         marginTop: 10,
         marginBottom: 10,
-        backgroundColor: "#ffffff80",
-        shadowColor: "#000000",
-        shadowOffset: {
-        width: 0,
-        height: 5,
-        },
-        shadowOpacity:  0.20,
-        shadowRadius: 5.62,
-        elevation: 7
         
     },
     home_expenses_box_icon:{
@@ -98,10 +91,9 @@ export const styles = StyleSheet.create({
         paddingRight: 20
     },
     number_input:{
-        width: "100%",
+        width: "45%",
         height: 50,
         fontSize: 26,
-        textAlign: "center"
     },
     add_page_box:{
         width: "90%",
@@ -164,7 +156,6 @@ export const styles = StyleSheet.create({
     spending_by_category:{
         width: "90%",
         height: 250,
-        backgroundColor: "blue",
         padding: 20,
         borderRadius: 18,
         marginTop: 35,
@@ -173,5 +164,14 @@ export const styles = StyleSheet.create({
     info_box_header:{
         width: "100%",
         height: "auto"
+    },
+    add_page_button:{
+        width: "50%",
+        height: 45,
+        alignItems: "center",
+        justifyContent:"center",
+        backgroundColor: "blue",
+        borderRadius: 18,
+        marginTop: 15
     }
 })

@@ -1,15 +1,56 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { useCallback, useState} from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { styles } from '../../styles';
 import { HomeTopBox } from '../../components/HomeTopBox';
 import { HomeExpensesBox } from '../../components/HomeExpensesBox';
+import { SwipeListView } from 'react-native-swipe-list-view';
 
 // Icons
 import Feather from '@expo/vector-icons/Feather';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import EvilIcons from '@expo/vector-icons/EvilIcons';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons'; // icon için
+
+
+import { getTransactions, getMonthlyTotal , deleteTransaction, getDailyTotal} from '../../db/db';
+
 export const HomePage = () => {
+    
+    const [expences, setExpences] = useState([]);
+    const [totalMonth, setTotalMonth] = useState("0");
+    const [totalDaily, setTotalDaily] = useState("0");
+
+   useFocusEffect(
+        useCallback(() => {
+
+            const fetchTransactions = async () => {
+            const data = await getTransactions();
+            setExpences(data);
+            };  
+
+            const fetchTotalMonth = async () => {
+                const monthData = await getMonthlyTotal();
+                setTotalMonth(monthData);
+            }
+
+            const fetchTotalDaily = async () => {
+                const dailyData = await getDailyTotal();
+                setTotalDaily(dailyData);
+            }
+            fetchTransactions();
+            fetchTotalMonth();
+            fetchTotalDaily();
+        }, [expences])
+    );
+    const handleDelete = async (id) => {
+        const deleteItem = deleteTransaction(id);
+        const newList = expences.filter(item => item.id !== id);
+        setExpences(newList);
+    }
+
+
+    
     return(
         <View style={styles.home_container}>
             <View style={styles.home_top_header}>
@@ -18,46 +59,75 @@ export const HomePage = () => {
             </View>
             <View style={styles.top_box_container}>
                 <HomeTopBox
-                    title="Today's Total"
-                    backgroundColor="#00CAFF"
-                    totals="$154.29"
+                    title="Bugün Toplam"
+                    color1="#287BFF"
+                    color2="#1861FD"
+                    totals={`₺ ${totalDaily}`}
                     icon={<Feather name="coffee" size={24} color="black" />}
                 />
                 <HomeTopBox
-                    title="This Month"
-                    backgroundColor="#C68EFD"
-                    totals="$2350.75"
+                    title="Bu Ay Toplam"
+                    color1="#655CFF"
+                    color2="#952CFB"
+                    totals={`₺ ${totalMonth}`}
                     icon={<AntDesign name="hearto" size={22} color="black" />}
                 />
             </View>
             <View style={styles.home_expences_header}>
                 <Text style={{fontSize: 16, fontWeight: "600"}}> Bugün Harcadıkların </Text>
-                <Text style={{fontSize: 12, color: "#616161"}}> 4 harcama </Text>
+                <Text style={{fontSize: 12, color: "#616161"}}> {expences.length} Harcama </Text>
             </View>
             <View style={styles.home_expenses_view} >
-                <HomeExpensesBox
-                    icon={<Feather name="coffee" size={24} color="black" />}
-                    title="Coffe & pastry"
-                    category="Food"
-                    time="8.47 AM"
-                    price="-$12.45"
-                    backgroundColor="orange"
-                />
-                <HomeExpensesBox
-                    icon={<FontAwesome5 name="car-alt" size={24} color="black" />}
-                    title="Uber ride"
-                    category="Transport"
-                    time="11.17 AM"
-                    price="-$47.00"
-                    backgroundColor="#3396D3"
-                />
-                <HomeExpensesBox
-                    icon={<Ionicons name="game-controller-outline" size={24} color="black" />}
-                    title="Movie tickets"
-                    category="Entertainment"
-                    time="7.30 PM"
-                    price="-$28.99"
-                    backgroundColor="#934790"
+               <SwipeListView
+                showsVerticalScrollIndicator={false}
+                style={{marginBottom: 220}}
+                data={expences}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={(data) => (
+                    <HomeExpensesBox
+                    icon={<MaterialIcons name="attach-money" size={24} color="white" />}
+                    title={data.item.category_name || "Harcama"}
+                    price={`- ${data.item.amount} ₺`}
+                    category={data.item.note || "Kategori yok"}
+                    time={new Date(data.item.date).toLocaleDateString()}
+                    backgroundColor="green"
+                    />
+                )}
+                
+                renderHiddenItem={(data) => (
+                    <View style={{ height: "100%",  flexDirection: 'row', justifyContent: 'flex-end', alignItems: "center",}}>
+                    <TouchableOpacity 
+                        onPress={() => handleEdit(data.item)} 
+                        style={{ 
+                            backgroundColor: '#c8c8c8ff',  
+                            width: 60,
+                            height: 50, 
+                            justifyContent: 'center', 
+                            alignItems: 'center',
+                            marginLeft: 5,
+                            marginRight: 5,
+                            borderRadius: 15
+
+                        }}>
+                        <EvilIcons name="pencil" size={30} color="black" />
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                        onPress={() => handleDelete(data.item.id)} 
+                        style={{ 
+                            backgroundColor: '#c8c8c8ff', 
+                            width: 60,
+                            height: 50, 
+                            justifyContent: 'center', 
+                            alignItems: 'center',
+                            marginLeft: 5,
+                            marginRight: 5,
+                            borderRadius: 15
+                        }}>
+                        <EvilIcons name="trash" size={30} color="black" />
+                    </TouchableOpacity>
+                    </View>
+                )}
+                rightOpenValue={-160} // sağa kaydırma mesafesi
                 />
             </View>
         </View>

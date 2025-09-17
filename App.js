@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 // Screens
 import { AddPage } from './app/screens/AddPage/AddPage';
@@ -9,10 +9,31 @@ import { StatsPage } from './app/screens/StatsPage/StatsPage';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
+// db
+import { initDB } from './app/db/db';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  
+   const [dbReady, setDbReady] = useState(false);
+
+  useEffect(() => {
+    const prepareDB = async () => {
+      try {
+        await initDB();
+        setDbReady(true); // DB hazır
+      } catch (err) {
+        console.log('DB init hatası:', err);
+      }
+    };
+    prepareDB();
+  }, []);
+
+  if (!dbReady) {
+    return null; // veya <Loading /> ekranı
+  }
+
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={{
