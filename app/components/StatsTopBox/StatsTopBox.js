@@ -39,7 +39,7 @@ export const StatsTopBox = () => {
         </Text>
       </View>
       <View style={styles.stats_top_box_lines}>
-        <Text style={{ fontSize: 13, color: "#fff", fontWeight: "500"  }}>Haftalık ortalama {totalMonth / 4}</Text>
+        <Text style={{ fontSize: 13, color: "#fff", fontWeight: "500"  }}>Haftalık ortalama ₺{totalMonth / 4}</Text>
       </View>
     </LinearGradient>
     )

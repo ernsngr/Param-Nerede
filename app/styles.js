@@ -124,7 +124,8 @@ export const styles = StyleSheet.create({
     },
     stats_container:{
         flex: 1,
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: "#ebebebff"
     },
     stats_header:{
         width: "100%",
@@ -154,16 +155,26 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
     },
     spending_by_category:{
-        width: "90%",
-        height: 250,
+        width: "95%",
+        height: 300,
         padding: 20,
         borderRadius: 18,
         marginTop: 35,
         marginBottom: 35,
+        alignItems: "center",
+        justifyContent: "center",
+        shadowColor:"#2e2e2e",
+        shadowOffset: {
+            width: 0,
+            height: 0,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 10,
+        elevation: 0,
     },
     info_box_header:{
         width: "100%",
-        height: "auto"
+        height: "100%",
     },
     add_page_button:{
         width: "50%",

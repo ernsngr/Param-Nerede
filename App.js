@@ -39,24 +39,25 @@ export default function App() {
       <Tab.Navigator screenOptions={{
         tabBarStyle:{
           height: 100,
-          paddingTop: 10
+          paddingTop: 10,
         },
-        
+        tabBarActiveTintColor: "#0D5EA6"
       }}>
         <Tab.Screen name="HomePage" component={HomePage}
           options={{
-            tabBarIcon: () => <FontAwesome5 name="home" size={24} color="#0D5EA6" />,
+            tabBarIcon: ({focused}) => <FontAwesome5 name="home" size={24} color={focused ? "#0D5EA6" : "grey"} />,
+            
             title: "Home",
             headerShown: false
           }}
         />
         <Tab.Screen name="AddPage" component={AddPage} options={{
-          tabBarIcon: () => <AntDesign name="plussquare" size={24} color="#0D5EA6" />,
+          tabBarIcon: ({focused}) => <AntDesign name="plussquare" size={24} color={focused ? "#0D5EA6" : "grey"} />,
           title: "Add",
           headerShown: false
         }}/>
         <Tab.Screen name="StatsPage" component={StatsPage} options={{
-          tabBarIcon: () => <Ionicons name="stats-chart" size={24} color="#0D5EA6" />,
+          tabBarIcon: ({focused}) => <Ionicons name="stats-chart" size={24} color={focused ? "#0D5EA6" : "grey"} />,
           title: "Stats",
           headerShown: false
         }}/>
