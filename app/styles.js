@@ -135,18 +135,14 @@ export const styles = StyleSheet.create({
         marginTop: 40,
         marginLeft: 20
     },
-    stats_top_box_container:{
-        width: "100%",
-        height: "auto",
-        alignItems: "center",
-        justifyContent: "center",
-    },
     stats_top_box:{
-        width: "70%",
+        width: "30%",
         height: "auto",
         backgroundColor: "red",
         padding: 25,
-        borderRadius: 18
+        borderRadius: 18,
+        marginLeft: 40,
+        marginRight: 40
     },
     stats_top_box_lines:{
         width: "100%",

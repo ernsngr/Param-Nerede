@@ -63,9 +63,22 @@ export const StatsPage = () => {
           paddingBottom : 100
         }}
       >
-        <View style={styles.stats_top_box_container}>
+        <ScrollView 
+          decelerationRate={0.9}
+          showsHorizontalScrollIndicator={false}
+          scrollEnabled={true}
+          horizontal
+          style={{width: "100%", height: "auto"}}
+          contentContainerStyle={{
+            alignItems: 'center',
+            paddingLeft: 40,
+            paddingRight: 195
+          }}
+        >
           <StatsTopBox/>
-        </View>
+          <StatsTopBox/>
+          <StatsTopBox/>
+        </ScrollView>
 
         {/* İnfo Boxs */}
         <View style={styles.spending_by_category}>
