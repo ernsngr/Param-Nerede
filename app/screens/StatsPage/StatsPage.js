@@ -5,6 +5,7 @@ import { styles } from '../../styles';
 import { StatsTopBox } from '../../components/StatsTopBox/StatsTopBox';
 import { ProgressChart } from 'react-native-chart-kit';
 import { getCategoryTotals } from '../../db/db';
+import PagerView from 'react-native-pager-view';
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -63,22 +64,11 @@ export const StatsPage = () => {
           paddingBottom : 100
         }}
       >
-        <ScrollView 
-          decelerationRate={0.9}
-          showsHorizontalScrollIndicator={false}
-          scrollEnabled={true}
-          horizontal
-          style={{width: "100%", height: "auto"}}
-          contentContainerStyle={{
-            alignItems: 'center',
-            paddingLeft: 40,
-            paddingRight: 195
-          }}
-        >
+        <PagerView style={{width: "100%", height: 125, alignItems: "center", justifyContent: "center"}} initialPage={3}>
           <StatsTopBox/>
           <StatsTopBox/>
           <StatsTopBox/>
-        </ScrollView>
+        </PagerView>
 
         {/* İnfo Boxs */}
         <View style={styles.spending_by_category}>
