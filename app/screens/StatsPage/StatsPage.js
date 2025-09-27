@@ -65,9 +65,24 @@ export const StatsPage = () => {
         }}
       >
         <PagerView style={{width: "100%", height: 125, alignItems: "center", justifyContent: "center"}} initialPage={3}>
-          <StatsTopBox/>
-          <StatsTopBox/>
-          <StatsTopBox/>
+          <StatsTopBox 
+            title="Aylık Toplam" 
+            index={0}
+            color1="#655CFF"
+            color2="#952CFB"
+            />
+          <StatsTopBox 
+            title="Haftalık Ortalama" 
+            index={1}
+            color1="#637AB9"
+            color2="#31326F"
+            />
+          <StatsTopBox 
+            title="Günlük Ortalama" 
+            index={2}
+            color1="#660B05"
+            color2="#3E0703"
+          />
         </PagerView>
 
         {/* İnfo Boxs */}
