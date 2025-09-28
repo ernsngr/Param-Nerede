@@ -22,7 +22,7 @@ export const AddPage = () => {
     const month = today.getMonth() + 1;
     const year = today.getFullYear();
 
-    const [amount, setAmount] = useState("");
+    const [amount, setAmount] = useState("₺" + "");
     const [note, setNote] = useState("");
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [categoryData, setCategoryData] = useState([]);
@@ -71,8 +71,7 @@ export const AddPage = () => {
                 <Text style={{width: "95%"}}>
                     Amount
                 </Text>
-                <View style={{flexDirection: "row", alignItems: "center", justifyContent: "center", paddingLeft: 50}}>
-                    <Text style={{width: "5%", fontSize: 26, color: "#161616ff", marginRight: 5 }}>₺</Text>
+                <View style={{flexDirection: "row", alignItems: "center", justifyContent: "center", }}>
                     <TextInput
                         style={styles.number_input}
                         placeholder='0.00'
@@ -111,6 +110,7 @@ export const AddPage = () => {
                         style={[styles.number_input,{fontSize: 16, width: "100%", textAlign: "center"}]}
                         placeholder='Add a description'
                         editable
+                        maxLength={24}
                         value={note}
                         onChangeText={setNote}
                         keyboardType="default"

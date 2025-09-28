@@ -158,3 +158,44 @@ export const getCategoryTotals = async () => {
     GROUP BY c.id ORDER BY total DESC;
   `);
 };
+
+const get30DayFilter = () => {
+  const date = new Date();
+  date.setDate(date.getDate() - 30);
+  return date.toISOString();
+};
+
+const THIRTY_DAYS_AGO = get30DayFilter();
+
+
+// --- YENİ İSTATİSTİK FONKSİYONU ---
+
+/**
+ * Son 30 gün içinde en çok harcanan kategoriyi ve toplam tutarı döndürür.
+ * @returns {Promise<{id: number | null, name: string, total: number}>} En çok harcanan kategorinin detayları.
+ */
+export const get30DayTopCategory = async () => {
+  const rows = await db.getAllAsync(
+    `
+    SELECT 
+      c.id, 
+      c.name, 
+      COALESCE(SUM(t.amount), 0) AS total
+    FROM transactions t
+    INNER JOIN categories c ON t.category_id = c.id
+    WHERE t.date >= ?  -- Son 30 gün filtresi
+    GROUP BY c.id, c.name
+    ORDER BY total DESC
+    LIMIT 1;
+    `,
+    [THIRTY_DAYS_AGO]
+  );
+
+  if (rows.length > 0) {
+    // Son 30 günde harcama varsa, en üsttekini döndür
+    return rows[0];
+  } else {
+    // Son 30 günde hiç harcama yapılmamışsa
+    return { id: null, name: "Harcama Yok", total: 0 };
+  }
+};

@@ -5,7 +5,8 @@ export const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
         alignItems: "center",
-        paddingTop: 65
+        paddingTop: 65,
+        backgroundColor: "#fff"
     },
     home_top_header:{
         width: "100%",
@@ -51,8 +52,8 @@ export const styles = StyleSheet.create({
     },
     home_expenses_box_container:{
         width:"100%",
-        height: 60,
-        backgroundColor: "#fff",
+        height: 70,
+        backgroundColor: "#ffffffff",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-evenly",
@@ -60,6 +61,14 @@ export const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 10,
         
+        shadowColor:"#2e2e2e",
+        shadowOffset: {
+            width: 0,
+            height: 0,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 10,
+        elevation: 0,
     },
     home_expenses_box_icon:{
         width: 40,
@@ -91,9 +100,10 @@ export const styles = StyleSheet.create({
         paddingRight: 20
     },
     number_input:{
-        width: "45%",
+        width: "100%",
         height: 50,
         fontSize: 26,
+        textAlign: "center"
     },
     add_page_box:{
         width: "90%",

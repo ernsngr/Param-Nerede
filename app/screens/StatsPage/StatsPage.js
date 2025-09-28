@@ -4,16 +4,19 @@ import { ScrollView, Text, View, Dimensions } from 'react-native';
 import { styles } from '../../styles';
 import { StatsTopBox } from '../../components/StatsTopBox/StatsTopBox';
 import { ProgressChart } from 'react-native-chart-kit';
-import { getCategoryTotals } from '../../db/db';
+import { getCategoryTotals, get30DayTopCategory } from '../../db/db';
 import PagerView from 'react-native-pager-view';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const screenWidth = Dimensions.get("window").width;
 
 export const StatsPage = () => {
   const [data, setData] = useState(null);
+  const [topCat, setTopCat] = useState({name: "Yükleniyor", total: 0});
 
   useFocusEffect(
     useCallback(() => {
+
       const fetchData = async () => {
         const categories = await getCategoryTotals();
         const toplam = categories.reduce((sum, c) => sum + c.total, 0);
@@ -23,6 +26,9 @@ export const StatsPage = () => {
           labels: categories.map(c => c.name),
           data: categories.map(c => toplam ? c.total / toplam : 0),
         });
+
+        const topCat = await get30DayTopCategory();
+        setTopCat(topCat);
       };
 
       
@@ -114,6 +120,24 @@ export const StatsPage = () => {
             )}
           </View>
         </View>
+          <LinearGradient
+                colors={["#A86523", "#E9A319"]} 
+                start={{ x: 0, y: 0 }}          
+                end={{ x: 1, y: 1 }}            
+                style={styles.stats_top_box}    
+              >
+                <View style={styles.stats_top_box_lines}>
+                  <Text style={{ fontSize: 22, color: "#fff", fontWeight: "600", letterSpacing: 1 }}>{topCat.name}</Text>
+                </View>
+                <View style={styles.stats_top_box_lines}>
+                  <Text style={{ fontSize: 30, fontWeight: "bold", letterSpacing: 0.5, color: "#fff" }}>
+                    ₺{topCat.total}
+                  </Text>
+                </View>
+                <View style={styles.stats_top_box_lines}>
+                  <Text style={{ fontSize: 13, color: "#fff", fontWeight: "500"  }}>En çok harcama yaptığın kategori</Text>
+                </View>
+          </LinearGradient>
         
       </ScrollView>
     </View>
