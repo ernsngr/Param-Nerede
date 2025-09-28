@@ -64,7 +64,7 @@ export const StatsPage = () => {
           paddingBottom : 100
         }}
       >
-        <PagerView style={{width: "100%", height: 125, alignItems: "center", justifyContent: "center"}} initialPage={3}>
+        <PagerView style={{width: screenWidth, height: 125, alignItems: "center", justifyContent: "center"}} initialPage={0}>
           <StatsTopBox 
             title="Aylık Toplam" 
             index={0}

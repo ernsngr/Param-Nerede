@@ -138,7 +138,6 @@ export const styles = StyleSheet.create({
     stats_top_box:{
         width: "80%",
         height: "auto",
-        backgroundColor: "red",
         padding: 25,
         borderRadius: 18,
         marginLeft: 40,
