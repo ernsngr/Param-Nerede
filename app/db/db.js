@@ -56,7 +56,27 @@ export const addCategory = async (name) => {
   );
   return result.lastInsertRowId;
 };
+export const listCategoriesDebug = async () => {
+  if (!db) await initDB();
+  const rows = await db.getAllAsync(
+    `SELECT id,
+            name,
+            '"' || name || '"' AS quoted,
+            length(name) AS len,
+            lower(name) AS lower_name
+     FROM categories
+     ORDER BY id;`
+  );
+  console.log("CATEGORY DEBUG:", rows);
+  return rows;
+};
 
+export const deleteCategoryById = async (id) => {
+  if (!db) await initDB();
+  const result = await db.runAsync("DELETE FROM categories WHERE id = ?;", [id]);
+  console.log("deleteCategoryById changes:", result.changes);
+  return result.changes;
+};
 // kategorileri getir
 export const getCategories = async () => {
   return await db.getAllAsync("SELECT * FROM categories ORDER BY name;");

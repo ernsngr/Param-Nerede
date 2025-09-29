@@ -11,7 +11,7 @@ import Feather from '@expo/vector-icons/Feather';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'; // icon için
-
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { getTransactions, getMonthlyTotal , deleteTransaction, getDailyTotal} from '../../db/db';
 
@@ -43,10 +43,59 @@ export const HomePage = () => {
             fetchTotalDaily();
         }, [expences])
     );
+
     const handleDelete = async (id) => {
         const deleteItem = deleteTransaction(id);
         const newList = expences.filter(item => item.id !== id);
         setExpences(newList);
+    }
+
+    const selectIcon = (data) => {
+        if(data.item.category_name == "Yemek"){
+            return <Ionicons name="fast-food-outline" size={24} color="black" />
+        }
+        else if ( data.item.category_name == "Ulaşım") {
+            return <Ionicons name="bus-outline" size={24} color="black" />
+        }
+        else if (data.item.category_name == "Market"){
+            return <Ionicons name="bag-handle-outline" size={24} color="black" />
+        }
+        else if (data.item.category_name == "Eğlence"){
+            return <Ionicons name="game-controller-outline" size={24} color="black" />
+        }
+        else if (data.item.category_name == "Faturalar"){
+            return <Ionicons name="albums-outline" size={24} color="black" />
+        }
+        else if (data.item.category_name == "Sağlık"){
+            return <Ionicons name="medical-outline" size={24} color="black" />
+        }
+        else {
+            return <Ionicons name="bookmark-outline" size={24} color="black" />
+        }
+    }
+
+    const selectBg = (data) => {
+        if(data.item.category_name == "Yemek"){
+            return "#FAB12F"
+        }
+        else if ( data.item.category_name == "Ulaşım") {
+            return "#0BA6DF"
+        }
+        else if (data.item.category_name == "Market"){
+            return "#67C090"
+        }
+        else if (data.item.category_name == "Eğlence"){
+            return "#FF0066"
+        }
+        else if (data.item.category_name == "Faturalar"){
+            return "#CADCAE"
+        }
+        else if (data.item.category_name == "Sağlık"){
+            return "#7ADAA5"
+        }
+        else {
+            return "#FFD700"
+        }
     }
 
 
@@ -85,12 +134,12 @@ export const HomePage = () => {
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={(data) => (
                     <HomeExpensesBox
-                    icon={<MaterialIcons name="attach-money" size={24} color="white" />}
-                    title={data.item.category_name || "Harcama"}
-                    price={`- ${data.item.amount} ₺`}
-                    category={data.item.note || "Kategori yok"}
-                    time={new Date(data.item.date).toLocaleDateString()}
-                    backgroundColor="green"
+                        icon={selectIcon(data)}
+                        title={data.item.category_name || "Harcama"}
+                        price={`- ${data.item.amount} ₺`}
+                        category={data.item.note || "Kategori yok"}
+                        time={new Date(data.item.date).toLocaleDateString()}
+                        backgroundColor={selectBg(data)}
                     />
                 )}
                 

@@ -5,24 +5,20 @@ import { styles } from '../../styles';
 
 // Icons
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-
+import Feather from '@expo/vector-icons/Feather';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 // db
 import { initDB, getCategories, addTransaction } from "../../db/db"
 
 
 
-
-
 export const AddPage = () => {
-
-    
-
     const today = new Date();
     const day = today.getDate();
     const month = today.getMonth() + 1;
     const year = today.getFullYear();
 
-    const [amount, setAmount] = useState("₺" + "");
+    const [amount, setAmount] = useState("");
     const [note, setNote] = useState("");
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [categoryData, setCategoryData] = useState([]);
@@ -33,7 +29,6 @@ export const AddPage = () => {
             const cats = await getCategories();
             // Dropdown için formatla
             setCategoryData(cats.map(c => ({ label: c.name, value: c.id })));
-            if (cats.length > 0) setSelectedCategory(cats[0].id);
         }
         setup();
     },[]);
@@ -55,6 +50,7 @@ export const AddPage = () => {
         alert("Harcama Eklendi")
         setAmount("");
         setNote("");
+        setSelectedCategory(null)
     }
 
 
@@ -83,9 +79,14 @@ export const AddPage = () => {
                 </View>
             </View>
             <View style={styles.add_page_box}>
-                <Text style={{width: "95%"}}>
-                    Category
-                </Text>
+                <View style={{flexDirection: "row", alignItems: "center", justifyContent: "center", paddingLeft: 15}}>
+                    <View>
+                        <Feather name="list" size={24} color="black" />
+                    </View>
+                    <Text style={{width: "95%", marginLeft: 10}}>
+                        Category
+                    </Text>
+                </View>
                 <View style={{flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
                     <Dropdown
                         style={styles.dropdown}
@@ -102,9 +103,14 @@ export const AddPage = () => {
                 </View>
             </View>
             <View style={styles.add_page_box}>
-                <Text style={{width: "95%"}}>
-                    Note (Optional)
-                </Text>
+                <View style={{flexDirection: "row", alignItems: "center", justifyContent: "center", paddingLeft: 15}}>
+                    <View>
+                        <FontAwesome name="sticky-note-o" size={24} color="black" />
+                    </View>
+                    <Text style={{width: "95%", marginLeft: 10}}>
+                        Note
+                    </Text>
+                </View>
                 <View style={{flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
                     <TextInput
                         style={[styles.number_input,{fontSize: 16, width: "100%", textAlign: "center"}]}
@@ -118,9 +124,14 @@ export const AddPage = () => {
                 </View>
             </View>
             <View style={styles.add_page_box}>
-                <Text style={{width: "95%"}}>
-                    Date
-                </Text>
+                <View style={{flexDirection: "row", alignItems: "center", justifyContent: "center", paddingLeft: 15}}>
+                    <View>
+                        <Feather name="calendar" size={24} color="black" />
+                    </View>
+                    <Text style={{width: "95%", marginLeft: 10}}>
+                        Date
+                    </Text>
+                </View>
                 <View style={{flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
                     <TextInput
                         style={[styles.number_input,{fontSize: 16, width: "100%", textAlign: "center"}]}
