@@ -13,6 +13,7 @@ import EvilIcons from '@expo/vector-icons/EvilIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'; // icon için
 import Ionicons from '@expo/vector-icons/Ionicons';
 
+// Database Comps
 import { getTransactions, getMonthlyTotal , deleteTransaction, getDailyTotal} from '../../db/db';
 
 export const HomePage = () => {
@@ -21,7 +22,7 @@ export const HomePage = () => {
     const [totalMonth, setTotalMonth] = useState("0");
     const [totalDaily, setTotalDaily] = useState("0");
 
-   useFocusEffect(
+    useFocusEffect(
         useCallback(() => {
 
             const fetchTransactions = async () => {
@@ -82,7 +83,7 @@ export const HomePage = () => {
             return "#0BA6DF"
         }
         else if (data.item.category_name == "Market"){
-            return "#67C090"
+            return "#FE7743"
         }
         else if (data.item.category_name == "Eğlence"){
             return "#FF0066"
@@ -144,39 +145,23 @@ export const HomePage = () => {
                 )}
                 
                 renderHiddenItem={(data) => (
-                    <View style={{ height: "100%",  flexDirection: 'row', justifyContent: 'flex-end', alignItems: "center",}}>
-                    <TouchableOpacity 
-                        onPress={() => handleEdit(data.item)} 
-                        style={{ 
-                            backgroundColor: '#c8c8c8ff',  
-                            width: 60,
-                            height: 50, 
-                            justifyContent: 'center', 
-                            alignItems: 'center',
-                            marginLeft: 5,
-                            marginRight: 5,
-                            borderRadius: 15
-
-                        }}>
-                        <EvilIcons name="pencil" size={30} color="black" />
-                    </TouchableOpacity>
+                    <View style={{ width: "90%", height: "100%",  flexDirection: 'row', justifyContent: "flex-end", alignItems: "center",}}>
                     <TouchableOpacity 
                         onPress={() => handleDelete(data.item.id)} 
                         style={{ 
-                            backgroundColor: '#c8c8c8ff', 
-                            width: 60,
+                            backgroundColor: '#E62727', 
+                            width: 50,
                             height: 50, 
                             justifyContent: 'center', 
                             alignItems: 'center',
-                            marginLeft: 5,
-                            marginRight: 5,
-                            borderRadius: 15
+                            borderRadius: 15,
+                            marginRight: 5
                         }}>
-                        <EvilIcons name="trash" size={30} color="black" />
+                        <EvilIcons name="trash" size={36} color="white" />
                     </TouchableOpacity>
                     </View>
                 )}
-                rightOpenValue={-160} // sağa kaydırma mesafesi
+                rightOpenValue={-100} // sağa kaydırma mesafesi
                 />
             </View>
         </View>

@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
         alignItems: "center",
     },
     home_expenses_box_container:{
-        width:"100%",
+        width:"96%",
         height: 70,
         backgroundColor: "#ffffffff",
         flexDirection: "row",
@@ -182,12 +182,10 @@ export const styles = StyleSheet.create({
         height: "100%",
     },
     add_page_button:{
-        width: "50%",
-        height: 45,
+        width: "80%",
+        height: 60,
         alignItems: "center",
         justifyContent:"center",
-        backgroundColor: "blue",
         borderRadius: 18,
-        marginTop: 15
     }
 })

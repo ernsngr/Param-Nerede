@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Dropdown } from "react-native-element-dropdown";
 import { styles } from '../../styles';
-
+import { LinearGradient } from 'expo-linear-gradient';
 // Icons
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Feather from '@expo/vector-icons/Feather';
@@ -61,7 +61,7 @@ export const AddPage = () => {
                 Harcama Ekle
             </Text>
             <View style={styles.add_page_box}>
-                <View style={{width: 45, height: 45, backgroundColor: "purple", alignItems: "center", justifyContent: "center", borderRadius: 50}}  >
+                <View style={{width: 45, height: 45, backgroundColor: "#5E936C", alignItems: "center", justifyContent: "center", borderRadius: 50}}  >
                     <MaterialIcons name="attach-money" size={24} color="white" />
                 </View>
                 <Text style={{width: "95%"}}>
@@ -141,11 +141,18 @@ export const AddPage = () => {
                     />
                 </View>
             </View>
+            <LinearGradient
+                colors={["#5E936C", "#3E5F44"]} 
+                start={{ x: 0, y: 0 }}          
+                end={{ x: 1, y: 1 }}            
+                style={[styles.add_page_button, { marginTop: 20}]}    
+            >
                <TouchableOpacity onPress={handleAdd} style={styles.add_page_button}>
-                <Text style={{fontSize: 24, color: "#f5f5f5", fontWeight: "600", letterSpacing: 2 }}>
-                    Ekle
-                </Text>
+                    <Text style={{fontSize: 24, color: "#f5f5f5", fontWeight: "600", letterSpacing: 2 }}>
+                        Harcama Ekle
+                    </Text>
                </TouchableOpacity>
+            </LinearGradient>
             </View>
         </View>
     )

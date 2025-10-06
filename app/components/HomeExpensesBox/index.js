@@ -13,7 +13,7 @@ export const HomeExpensesBox = ({icon, title, price, category, time, backgroundC
             <View style={styles.home_expenses_box_content}>
                 <View style={styles.home_expenses_box_text_container}>
                     <Text style={{fontSize: 16, fontWeight: "600"}}>{title}</Text>
-                    <Text style={{width: "100%", height: 20, fontSize: 12, color: "#616161", marginTop: 5, overflow: "hidden"}}>{category} • {time} </Text>
+                    <Text style={{width: "120%", height: 20, fontSize: 12, color: "#616161", marginTop: 5, overflow: "hidden"}}>{category} • {time} </Text>
                 </View>
                 <View>
                     <Text style={{fontSize: 18, fontWeight: "bold", color: "#CB0404"}}> {price} </Text>
