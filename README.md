@@ -2,14 +2,13 @@
 
 <h2>📱 Features</h2>
 <ul>
-  <li>Add and track daily expenses easily</li>
-  <li>Categorize spending (Food, Transport, Entertainment, etc.)</li>
-  <li>View spending history</li>
-  <li>SQLite integration for local data storage</li>
-  <li>Clean and simple UI with Expo</li>
+  <li>Günlük harcamaları kolayca ekleyin ve takip edin</li>
+  <li>Harcamaları kategorilere ayırın (Yemek, Ulaşım, Eğlence vb.)</li>
+  <li>Harcama geçmişini görüntüleyin</li>
+  <li>Yerel veri saklama için SQLite entegrasyonu</li>
 </ul>
 
-<h2>🚀 Tech Stack</h2>
+<h2>🚀 Kullanılan Teknolojiler</h2>
 <ul>
   <li>React Native</li>
   <li>Expo</li>
